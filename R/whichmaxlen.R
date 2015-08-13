@@ -1,0 +1,13 @@
+#' inner fxn used in list2matrix
+#'
+#' return the index of the element with max vector length in a list of vectors.
+#' if there are many longest vectors,return a vector of their indice
+#' @param x a list of vectors
+#' @keywords index
+#' @export
+
+whichmaxlen<-function(x) {
+    elemntLen<-vapply(x,length,FUN.VALUE=vector(mode="integer",length=1))
+    rt<-which(elemntLen == max(elemntLen))
+    return(rt)
+}

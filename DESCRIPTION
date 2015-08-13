@@ -1,0 +1,9 @@
+Package: ewrefxn
+Title: this package collects r fxns useful in my daily coding life
+Version: 0.1
+Authors: Guangchun Han <hanguangchun@gmail.com>
+Maintainer: Guangchun Han <hanguangchun@gmail.com>
+Description: useful little auxillary fxns
+Depends: R (>= 3.1.0)
+License: GPL(>=2)
+LazyData: true
