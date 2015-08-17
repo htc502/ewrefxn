@@ -77,16 +77,16 @@ print.meta <- function(gse.obj) {
 #' this fxn extract the expression matrix from an object returned by GEOquery
 #' @param gse.obj the geoquery object returned by GEOquery
 #' @param phe.num specify the column number of expression value
-#' @return phenotype information matrix with each column correponding to a sample, each row to a gene/probe
+#' @return phenotype information list with each element correponding to a sample
 #' @export
 getMeta <- function(gse.obj, phe.num) {
     ##this function get Meta information of those samples and return a matrix with each row corespond to a sample
     ##and each column a phenotype
     if(!require(GEOquery))
         stop("error loading GEOquery package\n")
-    res <- do.call('rbind', lapply(GSMList(gse.obj), function(x) {
+    res <- lapply(GSMList(gse.obj), function(x) {
                                               tmp <- Meta(x)
-                                              tmp[[phe.num]]}))
+                                              tmp[[phe.num]]})
     res
 }
 
