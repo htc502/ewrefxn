@@ -199,10 +199,14 @@ ilumin.soft.proc <- function(AccNum,detection.p=0.05,detectionRate = 0.5) {
 #' @param AccNum accession number
 #' @param filename read data from the local data instead of the remote server
 #' @param exp.col column number of expression value
+#' @param symbol.col column number of expression value, for arraymatrix data the GPL header is usually SYMBOL;
+#'         for agilent44K it is GENE_SYMBOL(10th column of GPL4134)
+#' @param entrezID.col column number of entrez id, for affymetrix data it is named Entrez_Gene_ID, for agilent it is
+#'         GENE(9th column of GPL4134)
 #' @param log2 set to T for logrithm transformation
 #' @return a list with expmatrix probeID symbols and entrezID
 #' @export
-soft2exp <- function(AccNum,filename=NULL,exp.col = 2,log2=F) {
+soft2exp <- function(AccNum,filename=NULL,exp.col = 2,symbol.col,entrezID.col ,log2=F) {
     ##GEO soft file processing
     ##use this kind of data is vunerable to data comparison problems(as the data may be lack of data preprocessing)
     if(!require(GEOquery))
