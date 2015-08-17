@@ -369,7 +369,9 @@ grepGPLtable <- function(query,gpl) {
     else
         print("no match found\n")
 }
-
+#' agilent 4*44k microchip preprocessing method
+#'
+#' @param geo.flist geo file list
 #' @export
 geo.agilent44k.prep <- function(geo.flist) {
      cat("array data files we will process are shown bellow\n")
@@ -380,6 +382,9 @@ geo.agilent44k.prep <- function(geo.flist) {
     prep.obj <- agilent44k.prep(array.fnames = geo.flist)
     prep.obj
 }
+#' agilent 4*44k microchip preprocessing method
+#'
+#' @param geo.flist geo file list
 #' @export
 geo.agilent80k.prep <- function(geo.flist) {
     res <- geo.agilent44k.prep(geo.flist)
