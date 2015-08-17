@@ -37,10 +37,10 @@ getMtr <- function(gse.obj, col=2) {
         stop("error loading GEOquery package\n")
     probesets <- Table(GPLList(gse.obj)[[1]])$ID
     res <- do.call('cbind', lapply(GSMList(gse.obj), function(x) {
-                                              tab <- Table(x)
-                                              pos <- match(probesets, tab$ID_REF)
-                                              return(tab[pos, col])
-                                          } ))
+        tab <- Table(x)
+        pos <- match(probesets, tab$ID_REF)
+        return(tab[pos, col])
+    } ))
     res <- apply(res, 2 ,function(x) as.numeric(as.character(x) ) )
     rownames(res) <- probesets
     res
@@ -55,9 +55,9 @@ check.pl.unique <- function(gse.obj) {
         cat("multiple platforms detected: \n")
         cat(unique(unlist(gsmpls) ),"\n")
     } else {
-          cat(unique(unlist(gsmpls) ),"\n")
-          cat("no problem, go ahead...\n")
-      }
+        cat(unique(unlist(gsmpls) ),"\n")
+        cat("no problem, go ahead...\n")
+    }
 }
 
 print.datatable <- function(gse.obj) {
@@ -85,8 +85,8 @@ getMeta <- function(gse.obj, phe.num) {
     if(!require(GEOquery))
         stop("error loading GEOquery package\n")
     res <- lapply(GSMList(gse.obj), function(x) {
-                                              tmp <- Meta(x)
-                                              tmp[[phe.num]]})
+        tmp <- Meta(x)
+        tmp[[phe.num]]})
     res
 }
 
@@ -104,9 +104,9 @@ rm.na1 <- function(expr) {
         rownames(res) <- gene.names[-nline]
         return(res)
     } else {
-          print("values are not missed in all samples, rm cancelled\n")
-          return(expr)
-      }
+        print("values are not missed in all samples, rm cancelled\n")
+        return(expr)
+    }
 }
 impute.na <- function(expr) {
     ##fill value-missing cells with imputation function
@@ -203,10 +203,11 @@ ilumin.soft.proc <- function(AccNum,detection.p=0.05,detectionRate = 0.5) {
 #'         for agilent44K it is GENE_SYMBOL(10th column of GPL4134)
 #' @param entrezID.col column number of entrez id, for affymetrix data it is named Entrez_Gene_ID, for agilent it is
 #'         GENE(9th column of GPL4134)
+#' @param phe.col specify the phenotype information want to extract from the gsmlist
 #' @param log2 set to T for logrithm transformation
 #' @return a list with expmatrix probeID symbols and entrezID
 #' @export
-soft2exp <- function(AccNum,filename=NULL,exp.col = 2,symbol.col,entrezID.col ,log2=F) {
+soft2exp <- function(AccNum,filename=NULL,exp.col = 2,symbol.col,entrezID.col,phe.col,log2=F) {
     ##GEO soft file processing
     ##use this kind of data is vunerable to data comparison problems(as the data may be lack of data preprocessing)
     if(!require(GEOquery))
@@ -243,22 +244,33 @@ soft2exp <- function(AccNum,filename=NULL,exp.col = 2,symbol.col,entrezID.col ,l
         stop("probesets not annoted in gpl table\n")
     symbols <- gpl.annot[pos,symbol.col]
     entrezIDs <- gpl.annot[pos,entrezID.col]
+    meta <- lapply(gsms, function(x) {
+        tmp <- Meta(x)
+        tmp[[phe.col]]})
     if(log2)
         dat.exp <- log2(dat.exp)
-    res <- list(exp=dat.exp, probeID=probesets, symbols=symbols, entrezIDs=entrezIDs)
+    res <- list(exp=dat.exp, probeID=probesets, symbols=symbols, entrezIDs=entrezIDs,meta = meta)
     res
 }
+
 #' expression matrix generator (with detection pvalue)
 #'
 #' given an accession number(gseXXXX), this fxn download and extract the expression matrix
 #' @param AccNum accession number
 #' @param exp.col column number of expression value
+#' @param symbol.col column number of expression value, for arraymatrix data the GPL header is usually SYMBOL;
+#'         for agilent44K it is GENE_SYMBOL(10th column of GPL4134)
+#' @param entrezID.col column number of entrez id, for affymetrix data it is named Entrez_Gene_ID, for agilent it is
+#'         GENE(9th column of GPL4134)
+#' @param phe.col specify the phenotype information want to extract from the gsmlist
 #' @param detectp.col column number of detection p value
 #' @param detectionRate threshold of sample detection rate for each gene
 #' @param log2 set to T for logrithm transformation
 #' @return a list with expmatrix probeID symbols and entrezID
 #' @export
-soft2exp.pval <- function(AccNum,detectp.col = 3,exp.col = 2,detectp=0.05,detectionRate=0.5,log2=F) {
+soft2exp.pval <- function(AccNum,detectp.col = 3,exp.col = 2,
+                          symbol.col,entrezID.col,phe.col,
+                          detectp=0.05,detectionRate=0.5,log2=F) {
     ##processing soft files with detection pvalue available(do detection p filtration)
     ##use this kind of data is vunerable to data comparison problems(as the data may be lack of data preprocessing)
     if(!require(GEOquery))
@@ -309,14 +321,17 @@ soft2exp.pval <- function(AccNum,detectp.col = 3,exp.col = 2,detectp=0.05,detect
     pos <- match(probesets, gpl.annot$ID)
     if(any(is.na(pos)))
         stop("probesets not annoted in gpl table\n")
-    symbols <- gpl.annot$Symbol[pos]
-    entrezIDs <- gpl.annot$Entrez_Gene_ID[pos]
+    symbols <- gpl.annot[pos,symbol.col]
+    entrezIDs <- gpl.annot[pos,entrezID.col]
     if(!require(impute))
         stop("error loading impute package\n")
     expr.impt <- impute.knn(dat.exp1)$data
+    meta <- lapply(gsms, function(x) {
+        tmp <- Meta(x)
+        tmp[[phe.col]]})
     if(log2)
         expr.impt <- log2(expr.impt)
-    res <- list(exp=expr.impt, probeID=probesets, symbols=symbols, entrezIDs=entrezIDs)
+    res <- list(exp=expr.impt, probeID=probesets, symbols=symbols, entrezIDs=entrezIDs,meta = meta)
     res
 }
 
@@ -347,9 +362,9 @@ geoSupp.fetch <- function(AccNum,
         ##by default, extrat the first file with name *RAW*
         rawfile <- grep("\\.*RAW\\.*",rownames(geo.flist),value=T)[1]
     } else {
-          geo.flist <- list.files()
-          rawfile <- grep("\\.*RAW\\.*",geo.flist,value=T)[1]
-      }
+        geo.flist <- list.files()
+        rawfile <- grep("\\.*RAW\\.*",geo.flist,value=T)[1]
+    }
     if(extract) {
         untar(rawfile,
               exdir=destdir)
@@ -378,7 +393,7 @@ grepGPLtable <- function(query,gpl) {
 #' @param geo.flist geo file list
 #' @export
 geo.agilent44k.prep <- function(geo.flist) {
-     cat("array data files we will process are shown bellow\n")
+    cat("array data files we will process are shown bellow\n")
     print(geo.flist)
     answer <- dual.choice("sure we go ahead?",value1 = "y",value2="n")
     if(answer == "n")
