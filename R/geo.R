@@ -241,8 +241,8 @@ soft2exp <- function(AccNum,filename=NULL,exp.col = 2,symbol.col,entrezID.col ,l
     pos <- match(probesets, gpl.annot$ID)
     if(any(is.na(pos)))
         stop("probesets not annoted in gpl table\n")
-    symbols <- gpl.annot$Symbol[pos]
-    entrezIDs <- gpl.annot$Entrez_Gene_ID[pos]
+    symbols <- gpl.annot[pos,symbol.col]
+    entrezIDs <- gpl.annot[pos,entrezID.col]
     if(log2)
         dat.exp <- log2(dat.exp)
     res <- list(exp=dat.exp, probeID=probesets, symbols=symbols, entrezIDs=entrezIDs)
