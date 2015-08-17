@@ -1,9 +1,21 @@
+#' fetch gene expression data from EBI arrayexpress
+#'
+#' this is a wrapper function which is used to download data from EBI arrayexpress
+#' @param accession Accession number of the data: E-GEOD-6039 etc
+#' @param path the dir where downloaded files will be stored in
+#' @param type raw/processed/full for downlaod the raw/processed/both data
+#' @param extract default to T, otherwise the downloaded data will not be extracted
+#' @param local local files to be read instead of downloading from the server
+#' @param sourcedir if local is TRUE, files will be read from this dir
+#' @return return
 #' @export
-ebi.fetch <- function(...) {
+ebi.fetch <- function(accession, path = getwd(), type = 'full',
+                      extract = T, local = F, sourcedir = path, ...) {
     if(!require0(ArrayExpress))
         stop("error loading arrayexpress package\n")
     ##arrayexpress file name list returned
-    ae.flist <- getAE(...)
+    ae.flist <- getAE(accession, path = getwd(), type = 'full',
+                      extract = T, local = F, sourcedir = path, ...)
     ae.flist
 }
 #' @export
