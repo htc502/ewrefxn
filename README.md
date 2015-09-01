@@ -1,11 +1,11 @@
-# git repo for ewrefxn: useful helper R fxn package used in my daily work
+# ewrefxn: useful helper R fxns used in my daily work
 
 * how to create such a package:  
   this package was created following the tutorial [here](http://hilaryparker.com/2014/04/29/writing-an-r-package-from-scratch/)  
      1. install and load devtools&roxygen2 packages with command:  
      	` install.packages('devtools');`  
-	` devtools::install_github('klutometis/roxygen');`  
-	` library(devtools);library(roxygen2) `  
+	    ` devtools::install_github('klutometis/roxygen');`  
+    	` library(devtools);library(roxygen2) `  
      2. change workdir to a father directory like f_wd:  
      	`setwd('f_wd')`
      3. create the project with the fxn `create` in devtools package

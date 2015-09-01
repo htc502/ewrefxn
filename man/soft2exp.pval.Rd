@@ -4,8 +4,8 @@
 \alias{soft2exp.pval}
 \title{expression matrix generator (with detection pvalue)}
 \usage{
-soft2exp.pval(AccNum, detectp.col = 3, exp.col = 2, detectp = 0.05,
-  detectionRate = 0.5, log2 = F)
+soft2exp.pval(AccNum, detectp.col = 3, exp.col = 2, symbol.col,
+  entrezID.col, phe.col, detectp = 0.05, detectionRate = 0.5, log2 = F)
 }
 \arguments{
 \item{AccNum}{accession number}
@@ -13,6 +13,14 @@ soft2exp.pval(AccNum, detectp.col = 3, exp.col = 2, detectp = 0.05,
 \item{detectp.col}{column number of detection p value}
 
 \item{exp.col}{column number of expression value}
+
+\item{symbol.col}{column number of expression value, for arraymatrix data the GPL header is usually SYMBOL;
+for agilent44K it is GENE_SYMBOL(10th column of GPL4134)}
+
+\item{entrezID.col}{column number of entrez id, for affymetrix data it is named Entrez_Gene_ID, for agilent it is
+GENE(9th column of GPL4134)}
+
+\item{phe.col}{specify the phenotype information want to extract from the gsmlist}
 
 \item{detectionRate}{threshold of sample detection rate for each gene}
 

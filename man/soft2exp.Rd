@@ -5,7 +5,7 @@
 \title{expression matrix generator}
 \usage{
 soft2exp(AccNum, filename = NULL, exp.col = 2, symbol.col, entrezID.col,
-  log2 = F)
+  phe.col, log2 = F)
 }
 \arguments{
 \item{AccNum}{accession number}
@@ -19,6 +19,8 @@ for agilent44K it is GENE_SYMBOL(10th column of GPL4134)}
 
 \item{entrezID.col}{column number of entrez id, for affymetrix data it is named Entrez_Gene_ID, for agilent it is
 GENE(9th column of GPL4134)}
+
+\item{phe.col}{specify the phenotype information want to extract from the gsmlist}
 
 \item{log2}{set to T for logrithm transformation}
 }

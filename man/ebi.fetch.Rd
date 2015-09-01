@@ -8,11 +8,11 @@ ebi.fetch(accession, path = getwd(), type = "full", extract = T,
   local = F, sourcedir = path, ...)
 }
 \arguments{
-\item{accession}{Accession number of the data: E-GEOD-6039 etc}
+\item{accession}{Accession number of the data, like 'E-GEOD-6039' etc}
 
-\item{path}{the dir where downloaded files will be stored in}
+\item{path}{the directory where downloaded files will be stored in}
 
-\item{type}{raw/processed/full for downlaod the raw/processed/both data}
+\item{type}{be one of raw/processed/full; for download the raw/processed/both data}
 
 \item{extract}{default to T, otherwise the downloaded data will not be extracted}
 

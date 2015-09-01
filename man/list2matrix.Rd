@@ -14,6 +14,7 @@ a data frame
 }
 \description{
 This fxn accepts a list and transform it to a matrix if possible
+missing entries will be filled with NA in the returned dataframe
 }
 \examples{
 tmp <- list(x=c(2,8,6,4,3),
