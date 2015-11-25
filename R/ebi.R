@@ -11,7 +11,7 @@
 #' @export
 ebi.fetch <- function(accession, path = getwd(), type = 'full',
                       extract = T, local = F, sourcedir = path, ...) {
-    if(!require0(ArrayExpress))
+    if(!require0('ArrayExpress'))
         stop("error loading arrayexpress package\n")
     ##arrayexpress file name list returned
     ae.flist <- getAE(accession, path = getwd(), type = 'full',
