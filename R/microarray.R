@@ -605,8 +605,8 @@ require0 <- function(pkg.name) {
 #' @author guangchun han
 #' @export
 affy.ivt.prep <- function(array.fnames) {
-    ##gcrma for normalization
-    ##0.2 detectionRate, be careful for experiments with large controls&small cases
+    ##gcrma for background correction; gcrma also applies quantile normalization by default;it also applies log2 transform  to the data
+    print('probe detectionRate 0.2, be careful with this for experiments with unbalanced case-control designs(ie. 100 controls .vs. 10 cases)')
     detection.p.cutoff <- 0.05
     detectionRate <- 0.2
     if(!require(affy))
