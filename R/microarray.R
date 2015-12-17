@@ -536,7 +536,7 @@ dual.choice <- function(display.info,value1, value2) {
 #' function used to filter expression matrix based on detection pvalue/PMA matrix
 #'
 #' @export
-#' @guangchun
+#' @author guangchun
 rm.absent<- function(expr, PA.mtr, detectRate=0.2,DP.mtr,dp.cutoff=0.05) {
     ##auxilary function used to remove Absent probes defined by mas5call of affy package, used for affymetrix chip processing
     if(all(c(is.null(PA.mtr),is.null(DP.mtr))) )
