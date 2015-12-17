@@ -56,7 +56,7 @@ get.arg.value <- function(arg.name,named.arg.list) {
 #' @param ... further parameters passed to RP limma or sam algrithm
 #' @return a list with 2 tables: up&down regulated genes expression fold change table
 #' @export
-diff.calc <- function(dat.obj,diff.method,... ){
+diffCalc <- function(dat.obj,diff.method,... ){
     ##return FC p value and fdr without thresholding
     ##leave thresholding to diff.output
     print("We assume that the data input is log2 transformed...")
