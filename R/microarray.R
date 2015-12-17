@@ -545,13 +545,13 @@ rm.absent<- function(expr, PA.mtr=NULL, detectRate=0.2,DP.mtr=NULL,dp.cutoff=0.0
     detectFlag <- apply(PA.mtr, 1, function(x) {(sum(x=="P")/dim(PA.mtr)[2]) >= detectRate})
     expr[detectFlag, ]->expr1
     PA.mtr1 <- PA.mtr[detectFlag, ]
-    res <- list(expr=expr1, PAmtr=PA.mtr1)
+    res <- list(expr=expr1, PAmtr=PA.mtr1,idx=detectFlag)
     return(res)
 } else {
     detectFlag <- apply(DP.mtr, 1, function(x) {(sum(x<=dp.cutoff)/dim(DP.mtr)[2]) >= detectRate})
     expr[detectFlag, ]->expr1
     DP.mtr1 <- DP.mtr[detectFlag, ]
-    res <- list(expr=expr1, DPmtr=DP.mtr1)
+    res <- list(expr=expr1, DPmtr=DP.mtr1,idx=detectFlag)
     return(res)
 }
 }
