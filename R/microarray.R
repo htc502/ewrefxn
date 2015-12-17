@@ -533,12 +533,27 @@ dual.choice <- function(display.info,value1, value2) {
         }
     }
 }
-
-rm.absent<- function(expr, PA.mtr, detectRate=0.2) {
+#' function used to filter expression matrix based on detection pvalue/PMA matrix
+#'
+#' @export
+#' @guangchun
+rm.absent<- function(expr, PA.mtr, detectRate=0.2,DP.mtr,dp.cutoff=0.05) {
     ##auxilary function used to remove Absent probes defined by mas5call of affy package, used for affymetrix chip processing
+    if(all(c(is.null(PA.mtr),is.null(DP.mtr))) )
+        stop('provide at least one of PA.mtr/DP.mtr')
+    if(!is.null(PA.mtr)) {
     detectFlag <- apply(PA.mtr, 1, function(x) {(sum(x=="P")/dim(PA.mtr)[2]) >= detectRate})
-    expr[detectFlag, ]->res
-    res
+    expr[detectFlag, ]->expr1
+    PA.mtr1 <- PA.mtr[detectFlag, ]
+    res <- list(expr=expr1, PAmtr=PA.mtr1)
+    return(res)
+} else {
+    detectFlag <- apply(DP.mtr, 1, function(x) {(sum(x<=dp.cutoff)/dim(DP.mtr)[2]) >= detectRate})
+    expr[detectFlag, ]->expr1
+    DP.mtr1 <- DP.mtr[detectFlag, ]
+    res <- list(expr=expr1, DPmtr=DP.mtr1)
+    return(res)
+}
 }
 
 #'agilent 4*44k microarray raw data preprocessing
