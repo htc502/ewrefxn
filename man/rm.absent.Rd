@@ -4,7 +4,8 @@
 \alias{rm.absent}
 \title{function used to filter expression matrix based on detection pvalue/PMA matrix}
 \usage{
-rm.absent(expr, PA.mtr, detectRate = 0.2, DP.mtr, dp.cutoff = 0.05)
+rm.absent(expr, PA.mtr = NULL, detectRate = 0.2, DP.mtr = NULL,
+  dp.cutoff = 0.05)
 }
 \description{
 function used to filter expression matrix based on detection pvalue/PMA matrix
