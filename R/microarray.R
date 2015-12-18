@@ -543,12 +543,18 @@ rm.absent<- function(expr, PA.mtr=NULL, detectRate=0.2,DP.mtr=NULL,dp.cutoff=0.0
     if(all(c(is.null(PA.mtr),is.null(DP.mtr))) )
         stop('provide at least one of PA.mtr/DP.mtr')
     if(!is.null(PA.mtr)) {
+        apply(PA.mtr,2,function(x) {sum(x=='P')/dim(PA.mtr)[2]} )->sm.detectionP
+        if(sum(sm.detectionP <= 0.5) > 0)
+            print(paste0(which(sm.detectionP <= 0.5),'has less than 50p probes detected, this is to inform you that there may exist bad quality samples...'))
     detectFlag <- apply(PA.mtr, 1, function(x) {(sum(x=="P")/dim(PA.mtr)[2]) >= detectRate})
     expr[detectFlag, ]->expr1
     PA.mtr1 <- PA.mtr[detectFlag, ]
     res <- list(expr=expr1, PAmtr=PA.mtr1,idx=detectFlag)
     return(res)
 } else {
+        apply(DP.mtr,2,function(x) {sum(x<=dp.cutoff)/dim(DP.mtr)[2]} )->sm.detectionP
+        if(sum(sm.detectionP <= 0.5) > 0)
+            print(paste0(which(sm.detectionP <= 0.5),'has less than 50p probes detected, this is to inform you that there may exist bad quality samples...'))
     detectFlag <- apply(DP.mtr, 1, function(x) {(sum(x<=dp.cutoff)/dim(DP.mtr)[2]) >= detectRate})
     expr[detectFlag, ]->expr1
     DP.mtr1 <- DP.mtr[detectFlag, ]
