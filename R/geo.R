@@ -409,3 +409,23 @@ geo.agilent80k.prep <- function(geo.flist) {
     res <- geo.agilent44k.prep(geo.flist)
     res
 }
+
+#' get symbol from ncbi geo GPL table
+#'
+#' @param probeIDs probeId vector to be converted
+#' @param gpl GPLxxx
+#' @param sym.col as the column number containing symbols is not consistant, it's better to be specified by the user
+#' @return a vector of symbols with missing value as NA
+#' @export
+getSYMBLgpl <- function(probeIDs, gpl, sym.col ) {
+    ##same as SymbolAggregate, but use annotation table provided by GEO gpl table,
+    ##downloading gpl table may take minites...
+    ##set get.symbol.only=T in case if you only want to convert probeID to symbol
+    if(!require(GEOquery))
+        stop("error loading GEOquery package\n")
+    gpl <- getGEO(gpl, destdir=".")
+    tab <- Table(gpl)
+    pos <- match(probeIDs, tab$ID)
+    symbol <- as.character(tab[pos, sym.col])
+    symbol
+}
