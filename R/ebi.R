@@ -15,7 +15,7 @@ ebi.fetch <- function(accession, path = getwd(), type = 'full',
         stop("error loading arrayexpress package\n")
     ##arrayexpress file name list returned
     ae.flist <- getAE(accession, path = getwd(), type = 'full',
-                      extract = T, local = F, sourcedir = path, ...)
+                      extract = extract, local = local, sourcedir = sourcedir, ...)
     ae.flist
 }
 #' function to process agilent44k chip data
