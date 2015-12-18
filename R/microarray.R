@@ -9,7 +9,7 @@
 #' @param class2 class1 and class2 are strings indicating which groups are compared.
 #' @return a list with 3 elements: dat for expression data matrix, cls for the coressponding sample labels, featureName is attached as also.
 #' @export
-dat.prep <- function(dat.mtr, featureName=NULL, sample.label,
+datPrep <- function(dat.mtr, featureName=NULL, sample.label,
                      class1, class2){
     ##set class1 = NULL for one class DEG analysis
     cl <- sample.label
@@ -167,7 +167,7 @@ install.packages(limma) may help\n")
 #' @param prefix result file prefix string
 #' @return this fxn has no return value
 #' @export
-diff.output <- function(diff.calc.obj,FC=1.5,
+diffOutput <- function(diff.calc.obj,FC=1.5,
                         fdr=0.05,prefix = ""){
     if(attributes(diff.calc.obj)$method == "sam") {##sam output is different...
         table1 <- diff.calc.obj$Table1[ diff.calc.obj$Table1[ ,2 ] >= FC , ]
