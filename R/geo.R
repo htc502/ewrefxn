@@ -74,9 +74,9 @@ print.meta <- function(gse.obj) {
 }
 #' phenotype data extractor of an geoquery object
 #'
-#' this fxn extract the expression matrix from an object returned by GEOquery
+#' this fxn extract information from an object returned by GEOquery
 #' @param gse.obj the geoquery object returned by GEOquery
-#' @param phe.num specify the column number of expression value
+#' @param phe.num specify the column number of the value
 #' @return phenotype information list with each element correponding to a sample
 #' @export
 getMeta <- function(gse.obj, phe.num) {
