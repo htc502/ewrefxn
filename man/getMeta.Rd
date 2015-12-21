@@ -9,12 +9,12 @@ getMeta(gse.obj, phe.num)
 \arguments{
 \item{gse.obj}{the geoquery object returned by GEOquery}
 
-\item{phe.num}{specify the column number of expression value}
+\item{phe.num}{specify the column number of the value}
 }
 \value{
 phenotype information list with each element correponding to a sample
 }
 \description{
-this fxn extract the expression matrix from an object returned by GEOquery
+this fxn extract information from an object returned by GEOquery
 }
 
