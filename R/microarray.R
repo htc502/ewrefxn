@@ -808,3 +808,30 @@ read.sdrf <- function(fname) {
                       check.names = F)
     res
 }
+
+#' 'combine' multiple factors 
+#'
+#' this function will group factors of the same length into a 'combined' one
+#' levels of inidividual factors will be combined together
+#' @export
+#' @return a new factor with levels combined from each individual factor
+#' @param ... factors to be passed in
+#' @param sep the separater used for combine the factor levels, with '_' as the default
+grpFactor <- function(...) {
+	 f <- list(...)
+	if(any(names(f) == 'sep')) {
+		idx <- which(names(f) == 'sep')
+		if(length(idx) != 1)
+			stop('error: multiple separators found')
+		sep = f$sep
+		f <- f[-idx]	
+} else 
+	sep = '_'
+
+        nf <- length(f)
+        newf <- as.factor(do.call(paste,c(f,sep=sep)))
+	newf
+}
+
+	
+
