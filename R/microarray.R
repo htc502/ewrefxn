@@ -594,7 +594,7 @@ agilent44k.prep <- function(array.fnames, detect.rate = .2) {
     print(table(isexpr))
     ##[, has been defined for EList in limma, El[ 1:3, ]is legal...
     elist.res <- elist.p[ elist.p$genes$ControlType == 0 & isexpr, ]
-    res <- list(exp=elist.res$E, feature=elist.res$gene)
+    res <- list(exp=elist.res$E, feature=elist.res$genes$GeneName)
     res
 }
 
