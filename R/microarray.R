@@ -10,7 +10,7 @@
 #' @return a list with 3 elements: dat for expression data matrix, cls for the coressponding sample labels, featureName is attached as also.
 #' @export
 datPrep <- function(dat.mtr, featureName=NULL, sample.label,
-                     class1, class2){
+                    class1, class2){
     ##set class1 = NULL for one class DEG analysis
     cl <- sample.label
     cl1.index<-rep(F,length=length(cl))
@@ -26,7 +26,7 @@ datPrep <- function(dat.mtr, featureName=NULL, sample.label,
     cl2.index<-rep(F,length=length(cl))
     f2<-unique(unlist(strsplit(class2,split="\\+")))
     if(any(f2 == ""))
-            stop(class2, "is malformed\n")
+        stop(class2, "is malformed\n")
     for(i in 1:length(f2) ) {
         cl2.index[cl==f2[i]]<-T
     }
@@ -100,19 +100,19 @@ install.packages(limma) may help\n")
                             genelist=dat.obj$featureName)
 
         } else { ##single channel data
-              cl <- factor(dat.obj$cls)
-              ##rename cl level names for later use
-              levels(cl) <- c("ctrl","case")
-              design.mtr <- model.matrix(~0+cl)
-              colnames(design.mtr) <- levels(cl)
-              contrasts <- paste(levels(cl)[1],"-",levels(cl)[2],sep="")
-              contra.mtr <- makeContrasts(contrasts = contrasts , levels = design.mtr)
-              fit <- lmFit(dat.obj$dat,design.mtr)
-              fit2 <- contrasts.fit(fit, contra.mtr)
-              fit2 <- eBayes(fit2)
-              res <- topTable(fit2, number = length(dat.obj$featureName),
-                              genelist=dat.obj$featureName)
-          }
+            cl <- factor(dat.obj$cls)
+            ##rename cl level names for later use
+            levels(cl) <- c("ctrl","case")
+            design.mtr <- model.matrix(~0+cl)
+            colnames(design.mtr) <- levels(cl)
+            contrasts <- paste(levels(cl)[1],"-",levels(cl)[2],sep="")
+            contra.mtr <- makeContrasts(contrasts = contrasts , levels = design.mtr)
+            fit <- lmFit(dat.obj$dat,design.mtr)
+            fit2 <- contrasts.fit(fit, contra.mtr)
+            fit2 <- eBayes(fit2)
+            res <- topTable(fit2, number = length(dat.obj$featureName),
+                            genelist=dat.obj$featureName)
+        }
         ##column order for 1,2,8,9: gene, logFC, p, fdr
         Table1 <- res[ res$logFC < 0 , c(1, 2, 5,6) ]
         Table2 <- res[ res$logFC > 0 , c(1, 2, 5,6) ]
@@ -168,7 +168,7 @@ install.packages(limma) may help\n")
 #' @return this fxn has no return value
 #' @export
 diffOutput <- function(diff.calc.obj,FC=1.5,
-                        fdr=0.05,prefix = ""){
+                       fdr=0.05,prefix = ""){
     if(attributes(diff.calc.obj)$method == "sam") {##sam output is different...
         table1 <- diff.calc.obj$Table1[ diff.calc.obj$Table1[ ,2 ] >= FC , ]
         table1 <- table1[ table1[ ,3 ] <= fdr, ]
@@ -185,36 +185,36 @@ diffOutput <- function(diff.calc.obj,FC=1.5,
         write.csv(table2,tab2Name,row.names=F)
 
     } else if(attributes(diff.calc.obj)$method == "fc" ) {
-          table1 <- diff.calc.obj$Table1[ diff.calc.obj$Table1[ ,4 ] <= 1/FC , ]
-          table2 <- diff.calc.obj$Table2[ diff.calc.obj$Table2[ ,4 ] >= FC , ]
+        table1 <- diff.calc.obj$Table1[ diff.calc.obj$Table1[ ,4 ] <= 1/FC , ]
+        table2 <- diff.calc.obj$Table2[ diff.calc.obj$Table2[ ,4 ] >= FC , ]
 
-          tab1Name <- paste("table1.csv",sep="")
-          tab2Name <- paste("table2.csv",sep="")
-          if(prefix != ""){
-              tab1Name <- paste0(prefix, "_", tab1Name)
-              tab2Name <- paste0(prefix, "_", tab2Name)
-          }
-          write.csv(table1,tab1Name,row.names=F)
-          write.csv(table2,tab2Name,row.names=F)
-      } else {
-           ##here we assume that the data structure of the diff.calc.obj is : geneName FC fdr Pvalue
-           ##fc is calculated as class1/class2
-           ##if we assume that class1 is control grp, then table 1 is up regulated genes, table 2 is down regulated genes
-           ##table column: gene fc p.value fdr
-           table1 <- diff.calc.obj$Table1[ diff.calc.obj$Table1[ ,2 ] <= 1/FC , ]
-           table1 <- table1[ table1[ ,4 ] <= fdr, ]
-           table2 <- diff.calc.obj$Table2[ diff.calc.obj$Table2[ ,2 ] >= FC , ]
-           table2 <- table2[ table2[ ,4 ] <= fdr, ]
+        tab1Name <- paste("table1.csv",sep="")
+        tab2Name <- paste("table2.csv",sep="")
+        if(prefix != ""){
+            tab1Name <- paste0(prefix, "_", tab1Name)
+            tab2Name <- paste0(prefix, "_", tab2Name)
+        }
+        write.csv(table1,tab1Name,row.names=F)
+        write.csv(table2,tab2Name,row.names=F)
+    } else {
+        ##here we assume that the data structure of the diff.calc.obj is : geneName FC fdr Pvalue
+        ##fc is calculated as class1/class2
+        ##if we assume that class1 is control grp, then table 1 is up regulated genes, table 2 is down regulated genes
+        ##table column: gene fc p.value fdr
+        table1 <- diff.calc.obj$Table1[ diff.calc.obj$Table1[ ,2 ] <= 1/FC , ]
+        table1 <- table1[ table1[ ,4 ] <= fdr, ]
+        table2 <- diff.calc.obj$Table2[ diff.calc.obj$Table2[ ,2 ] >= FC , ]
+        table2 <- table2[ table2[ ,4 ] <= fdr, ]
 
-           tab1Name <- paste("table1.csv",sep="")
-           tab2Name <- paste("table2.csv",sep="")
-           if(prefix != ""){
-               tab1Name <- paste0(prefix, "_", tab1Name)
-               tab2Name <- paste0(prefix, "_", tab2Name)
-           }
-           write.csv(table1,tab1Name,row.names=F)
-           write.csv(table2,tab2Name,row.names=F)
-       }
+        tab1Name <- paste("table1.csv",sep="")
+        tab2Name <- paste("table2.csv",sep="")
+        if(prefix != ""){
+            tab1Name <- paste0(prefix, "_", tab1Name)
+            tab2Name <- paste0(prefix, "_", tab2Name)
+        }
+        write.csv(table1,tab1Name,row.names=F)
+        write.csv(table2,tab2Name,row.names=F)
+    }
 }
 
 SymbolAggregate<- function(expr, map.db, map.name,get.symbol.only=F) {
@@ -303,7 +303,7 @@ annot.affyProbeID <- function(affy.annot.file, probeIDs, target.col=15) {
     while(1) {
         oneline <- readLines(con, n =1 )
         if(!grepl("^#",oneline))
-        break
+            break
         skip <- skip + 1
     }
     close(con)
@@ -387,12 +387,12 @@ affy.Microarray.preprocessing = function(phenoData, Preprocessing = "mas5", PMA_
         ##probe ids  map to gene identifier
         geneid = getText(aafLocusLink(rownames(expr_rm_unannoted), db.package ));
     } else {
-          if(is.null(ann.file) | is.null(ann.col))
-              stop("annotation file and target column number is required for mannally annotation mode\n")
-          annoted_probes = annot.affyProbeID(ann.file, rownames(expr_rm_ctrl),ann.col);
-          expr_rm_unannoted = expr_rm_ctrl[!is.na(annoted_probes ), ]
-          geneid =annot.affyProbeID(ann.file, rownames(expr_rm_unannoted),ann.col);
-      }
+        if(is.null(ann.file) | is.null(ann.col))
+            stop("annotation file and target column number is required for mannally annotation mode\n")
+        annoted_probes = annot.affyProbeID(ann.file, rownames(expr_rm_ctrl),ann.col);
+        expr_rm_unannoted = expr_rm_ctrl[!is.na(annoted_probes ), ]
+        geneid =annot.affyProbeID(ann.file, rownames(expr_rm_unannoted),ann.col);
+    }
 
     cat("Get representative probesets for each gene by", multiple2one, "...\n")
                                         #Mutiple ProbSets to the same genes(highest var)
@@ -546,21 +546,21 @@ rm.absent<- function(expr, PA.mtr=NULL, detectRate=0.2,DP.mtr=NULL,dp.cutoff=0.0
         apply(PA.mtr,2,function(x) {sum(x=='P')/dim(PA.mtr)[1]} )->sm.detectionP
         if(sum(sm.detectionP <= 0.2) > 0)
             print(paste0(paste(which(sm.detectionP <= 0.2),collapse=','),'has less than 50% probes detected, this is to inform you that there may exist bad quality samples...'))
-    detectFlag <- apply(PA.mtr, 1, function(x) {(sum(x=="P")/dim(PA.mtr)[2]) >= detectRate})
-    expr[detectFlag, ]->expr1
-    PA.mtr1 <- PA.mtr[detectFlag, ]
-    res <- list(expr=expr1, PAmtr=PA.mtr1,idx=detectFlag)
-    return(res)
-} else {
+        detectFlag <- apply(PA.mtr, 1, function(x) {(sum(x=="P")/dim(PA.mtr)[2]) >= detectRate})
+        expr[detectFlag, ]->expr1
+        PA.mtr1 <- PA.mtr[detectFlag, ]
+        res <- list(expr=expr1, PAmtr=PA.mtr1,idx=detectFlag)
+        return(res)
+    } else {
         apply(DP.mtr,2,function(x) {sum(x<=dp.cutoff)/dim(DP.mtr)[1]} )->sm.detectionP
         if(sum(sm.detectionP <= 0.2) > 0)
             print(paste0(paste(which(sm.detectionP <= 0.2),collapse=','),'has less than 50% probes detected, this is to inform you that there may exist bad quality samples...'))
-    detectFlag <- apply(DP.mtr, 1, function(x) {(sum(x<=dp.cutoff)/dim(DP.mtr)[2]) >= detectRate})
-    expr[detectFlag, ]->expr1
-    DP.mtr1 <- DP.mtr[detectFlag, ]
-    res <- list(expr=expr1, DPmtr=DP.mtr1,idx=detectFlag)
-    return(res)
-}
+        detectFlag <- apply(DP.mtr, 1, function(x) {(sum(x<=dp.cutoff)/dim(DP.mtr)[2]) >= detectRate})
+        expr[detectFlag, ]->expr1
+        DP.mtr1 <- DP.mtr[detectFlag, ]
+        res <- list(expr=expr1, DPmtr=DP.mtr1,idx=detectFlag)
+        return(res)
+    }
 }
 
 #'agilent 4*44k microarray raw data preprocessing
@@ -615,10 +615,10 @@ require0 <- function(pkg.name) {
         if(!require(pkg.name, character.only = T, quietly = T))
             return(F)
     } else {
-          biocInst(pkg.name)
-          if(!require(pkg.name, character.only=T, quietly = T))
-              return(F)
-      }
+        biocInst(pkg.name)
+        if(!require(pkg.name, character.only=T, quietly = T))
+            return(F)
+    }
     T
 }
 #' affymatrix ivt microarray preprocessing 'lite' version
@@ -818,20 +818,56 @@ read.sdrf <- function(fname) {
 #' @param ... factors to be passed in
 #' @param sep the separater used for combine the factor levels, with '_' as the default
 grpFactor <- function(...) {
-	 f <- list(...)
-	if(any(names(f) == 'sep')) {
-		idx <- which(names(f) == 'sep')
-		if(length(idx) != 1)
-			stop('error: multiple separators found')
-		sep = f$sep
-		f <- f[-idx]	
-} else 
-	sep = '_'
+    f <- list(...)
+    if(any(names(f) == 'sep')) {
+        idx <- which(names(f) == 'sep')
+        if(length(idx) != 1)
+            stop('error: multiple separators found')
+        sep = f$sep
+        f <- f[-idx]	
+    } else 
+        sep = '_'
 
-        nf <- length(f)
-        newf <- as.factor(do.call(paste,c(f,sep=sep)))
-	newf
+    nf <- length(f)
+    newf <- as.factor(do.call(paste,c(f,sep=sep)))
+    newf
 }
 
-	
+#' calculate DEGs considering additional factors
+#'
+#' ... for additional factors that is used to group samples into more precisable sub-groups
+#' DEG will be calculated in each subgroups
+#' @export
+#' @return a list with class labels(useful for identify up and down regulated genes based on FC) and DEGs calcualted stored in the list
+#' @param dat.preped object returned by datPrep function
+#' @param pheno.mtr this is the phenotype matrix which stores all phenotypes
+#' @param comp.cls.col DEGS will be calculated based on this class
+#' @param ... additional factors that is used to group samples into sub-groups
+
+batchedDEG <- function(dat.preped, pheno.mtr, comp.cls.col,...) {
+    addt_cols <- list(...)
+    iadd <- length(addt_cols) 
+    addlist <- list()
+    for(i in 1:iadd) {addlist[[i]] = pheno.mtr[,addt_cols[[i]] ]}
+    newcls <- as.factor(do.call(paste,c(addlist,sep='_')))
+    lvls <- levels(newcls)
+    deg.list <- list()
+    for(i in 1:length(lvls) ) {
+        ilvl <- lvls[i]
+        print(paste0('processing ',ilvl))
+        newcls == ilvl -> idx
+        expi <- dat.preped$exp[ , idx ]
+        label <- pheno.mtr[,comp.cls.col][idx]
+        labeluniq <- unique(label)
+        names(labeluniq) <- c('class1','class2')
+        if(length(labeluniq) != 2)
+            stop('there should be two levels in the class')
+        datPrep(expi,dat.preped$feature, label, labeluniq[1],labeluniq[2])->dat4deg
+        diff.res <- diffCalc(dat4deg,diff.method='RP')
+        deg.list[[i]] <- list(diffRes=diff.res,class=labeluniq)
+        names(deg.list)[i] <- ilvl
+        rm(ilvl);rm(idx);rm(expi);rm(label);rm(dat4deg);rm(diff.res)
+    }
+    deg.list
+}
 
