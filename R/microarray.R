@@ -303,7 +303,7 @@ annot.affyProbeID <- function(affy.annot.file, probeIDs, target.col=15) {
     while(1) {
         oneline <- readLines(con, n =1 )
         if(!grepl("^#",oneline))
-            break
+        break
         skip <- skip + 1
     }
     close(con)
@@ -843,7 +843,6 @@ grpFactor <- function(...) {
 #' @param pheno.mtr this is the phenotype matrix which stores all phenotypes
 #' @param comp.cls.col column number of the class in the pheno.mtr. DEGS will be calculated based on this class
 #' @param ... additional column numbers of factors that is used to group samples into sub-groups
-
 batchedDEG <- function(dat.preped, pheno.mtr, comp.cls.col,...) {
     addt_cols <- list(...)
     iadd <- length(addt_cols)
@@ -877,16 +876,15 @@ batchedDEG <- function(dat.preped, pheno.mtr, comp.cls.col,...) {
 #' @param deglist obj returned by batchedDEG
 #' @return a list with filtered DEGs and class label for each DEG calculation
 #' @export
-
-DEG_filter <- function(deglist,fdr=0.05,fc=1.2) {
-        res<-list()
-        for( i in 1:length(deglist)) {
-                deg <- deglist[[i]]$diffRes
-                table1 <- deg$Table1;table2<-deg$Table2
-                subset(table1,  table1[ ,2] <= 1/fc & pfp <= fdr) -> table1
-                subset(table2,  table2[ ,2] >= fc & pfp <= fdr) -> table2
-                res[[i]] <- list(diffRes=list(Table1=table1,Table2=table2),class=deglist[[i]]$labeluniq)
-        }
-        names(res)<-names(deglist)
-        res
+batchedDEG_filter <- function(deglist,fdr=0.05,fc=1.2) {
+    res<-list()
+    for( i in 1:length(deglist)) {
+        deg <- deglist[[i]]$diffRes
+        table1 <- deg$Table1;table2<-deg$Table2
+        subset(table1,  table1[ ,2] <= 1/fc & pfp <= fdr) -> table1
+        subset(table2,  table2[ ,2] >= fc & pfp <= fdr) -> table2
+        res[[i]] <- list(diffRes=list(Table1=table1,Table2=table2),class=deglist[[i]]$labeluniq)
+    }
+    names(res)<-names(deglist)
+    res
 }
