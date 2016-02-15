@@ -856,9 +856,9 @@ batchedDEG <- function(dat.preped, pheno.mtr, comp.cls.col,...) {
         ilvl <- lvls[i]
         print(paste0('processing ',ilvl))
         newcls == ilvl -> idx
-        expi <- dat.preped$exp[ , idx ]
+        expi <- dat.preped$dat[ , idx ]
         label <- pheno.mtr[,comp.cls.col][idx]
-        labeluniq <- unique(label)
+        labeluniq <- as.character(unique(label))
         names(labeluniq) <- c('class1','class2')
         if(length(labeluniq) != 2)
             stop('there should be two levels in the class')
