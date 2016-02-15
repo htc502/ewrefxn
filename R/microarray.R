@@ -809,7 +809,7 @@ read.sdrf <- function(fname) {
     res
 }
 
-#' 'combine' multiple factors 
+#' 'combine' multiple factors
 #'
 #' this function will group factors of the same length into a 'combined' one
 #' levels of inidividual factors will be combined together
@@ -824,8 +824,8 @@ grpFactor <- function(...) {
         if(length(idx) != 1)
             stop('error: multiple separators found')
         sep = f$sep
-        f <- f[-idx]	
-    } else 
+        f <- f[-idx]
+    } else
         sep = '_'
 
     nf <- length(f)
@@ -841,12 +841,12 @@ grpFactor <- function(...) {
 #' @return a list with class labels(useful for identify up and down regulated genes based on FC) and DEGs calcualted stored in the list
 #' @param dat.preped object returned by datPrep function
 #' @param pheno.mtr this is the phenotype matrix which stores all phenotypes
-#' @param comp.cls.col DEGS will be calculated based on this class
-#' @param ... additional factors that is used to group samples into sub-groups
+#' @param comp.cls.col column number of the class in the pheno.mtr. DEGS will be calculated based on this class
+#' @param ... additional column numbers of factors that is used to group samples into sub-groups
 
 batchedDEG <- function(dat.preped, pheno.mtr, comp.cls.col,...) {
     addt_cols <- list(...)
-    iadd <- length(addt_cols) 
+    iadd <- length(addt_cols)
     addlist <- list()
     for(i in 1:iadd) {addlist[[i]] = pheno.mtr[,addt_cols[[i]] ]}
     newcls <- as.factor(do.call(paste,c(addlist,sep='_')))
