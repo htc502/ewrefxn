@@ -876,6 +876,7 @@ batchedDEG <- function(dat.preped, pheno.mtr, comp.cls.col,...) {
 #' this function is intended to be used accompany with batchedDEG
 #' @param deglist obj returned by batchedDEG
 #' @return a list with filtered DEGs and class label for each DEG calculation
+#' @export
 
 DEG_filter <- function(deglist,fdr=0.05,fc=1.2) {
         res<-list()
