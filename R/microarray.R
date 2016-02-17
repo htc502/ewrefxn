@@ -842,8 +842,12 @@ grpFactor <- function(...) {
 #' @param dat.preped object returned by datPrep function
 #' @param pheno.mtr this is the phenotype matrix which stores all phenotypes
 #' @param comp.cls.col column number of the class in the pheno.mtr. DEGS will be calculated based on this class
+#' @param class1 which class will be treated as class1 in RankProd method
+#' @param class2 which class will be treated as class2 in RankProd method
 #' @param ... additional column numbers of factors that is used to group samples into sub-groups
-batchedDEG <- function(dat.preped, pheno.mtr, comp.cls.col,...) {
+batchedDEG <- function(dat.preped, pheno.mtr, comp.cls.col,class1,class2,...) {
+    if(is.null(class1) | is.null(class2))
+        stop('class1 and class2 shouldn\'t be empty')
     addt_cols <- list(...)
     iadd <- length(addt_cols)
     addlist <- list()
@@ -857,11 +861,11 @@ batchedDEG <- function(dat.preped, pheno.mtr, comp.cls.col,...) {
         newcls == ilvl -> idx
         expi <- dat.preped$dat[ , idx ]
         label <- pheno.mtr[,comp.cls.col][idx]
-        labeluniq <- as.character(unique(label))
+        labeluniq <- c(class1,class2)
         names(labeluniq) <- c('class1','class2')
         if(length(labeluniq) != 2)
             stop('there should be two levels in the class')
-        datPrep(expi,dat.preped$feature, label, labeluniq[1],labeluniq[2])->dat4deg
+        datPrep(expi,dat.preped$feature, label, class1,class2)->dat4deg
         diff.res <- diffCalc(dat4deg,diff.method='RP')
         deg.list[[i]] <- list(diffRes=diff.res,class=labeluniq)
         names(deg.list)[i] <- ilvl
