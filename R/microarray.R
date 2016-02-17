@@ -883,7 +883,7 @@ batchedDEG_filter <- function(deglist,fdr=0.05,fc=1.2) {
         table1 <- deg$Table1;table2<-deg$Table2
         subset(table1,  table1[ ,2] <= 1/fc & pfp <= fdr) -> table1
         subset(table2,  table2[ ,2] >= fc & pfp <= fdr) -> table2
-        res[[i]] <- list(diffRes=list(Table1=table1,Table2=table2),class=deglist[[i]]$labeluniq)
+        res[[i]] <- list(diffRes=list(Table1=table1,Table2=table2),class=deglist[[i]]$class)
     }
     names(res)<-names(deglist)
     res
