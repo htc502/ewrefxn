@@ -4,7 +4,7 @@
 \alias{batchedDEG}
 \title{calculate DEGs considering additional factors}
 \usage{
-batchedDEG(dat.preped, pheno.mtr, comp.cls.col, ...)
+batchedDEG(dat.preped, pheno.mtr, comp.cls.col, class1, class2, ...)
 }
 \arguments{
 \item{dat.preped}{object returned by datPrep function}
@@ -12,6 +12,10 @@ batchedDEG(dat.preped, pheno.mtr, comp.cls.col, ...)
 \item{pheno.mtr}{this is the phenotype matrix which stores all phenotypes}
 
 \item{comp.cls.col}{column number of the class in the pheno.mtr. DEGS will be calculated based on this class}
+
+\item{class1}{which class will be treated as class1 in RankProd method}
+
+\item{class2}{which class will be treated as class2 in RankProd method}
 
 \item{...}{additional column numbers of factors that is used to group samples into sub-groups}
 }
