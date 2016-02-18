@@ -833,7 +833,7 @@ grpFactor <- function(...) {
     newf
 }
 
-#' calculate DEGs considering additional factors
+#' calculate DEGs considering additional factors, using Rankprod
 #'
 #' ... for additional factors that is used to group samples into more precisable sub-groups
 #' DEG will be calculated in each subgroups
@@ -845,7 +845,7 @@ grpFactor <- function(...) {
 #' @param class1 which class will be treated as class1 in RankProd method
 #' @param class2 which class will be treated as class2 in RankProd method
 #' @param ... additional column numbers of factors that is used to group samples into sub-groups
-batchedDEG <- function(dat.preped, pheno.mtr, comp.cls.col,class1,class2,...) {
+batchedRP <- function(dat.preped, pheno.mtr, comp.cls.col,class1,class2,...) {
     if(is.null(class1) | is.null(class2))
         stop('class1 and class2 shouldn\'t be empty')
     addt_cols <- list(...)
@@ -874,13 +874,13 @@ batchedDEG <- function(dat.preped, pheno.mtr, comp.cls.col,class1,class2,...) {
     deg.list
 }
 
-#' filter DEG based on fold change and fdr
+#' filter batchedRP DEG based on fold change and fdr
 #'
-#' this function is intended to be used accompany with batchedDEG
-#' @param deglist obj returned by batchedDEG
+#' this function is intended to be used accompany with batchedRP
+#' @param deglist obj returned by batchedRP
 #' @return a list with filtered DEGs and class label for each DEG calculation
 #' @export
-batchedDEG_filter <- function(deglist,fdr=0.05,fc=1.2) {
+batchedRP_filter <- function(deglist,fdr=0.05,fc=1.2) {
     res<-list()
     for( i in 1:length(deglist)) {
         deg <- deglist[[i]]$diffRes
