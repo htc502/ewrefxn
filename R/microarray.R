@@ -892,3 +892,23 @@ batchedRP_filter <- function(deglist,fdr=0.05,fc=1.2) {
     names(res)<-names(deglist)
     res
 }
+
+gassigSearch0 <- function(assign) { #gassig for gene assignment
+    if(assign == '---')
+        return(NA)
+        ##found that gene assignment is separated by /// and then by //
+        fields <- strsplit(assign, split='///')[[1]]
+        unlist(lapply(fields, function(x) strsplit(x,split='//')[[1]][2]))->symbol
+        symbol<-unique(symbol);symbol <- gsub(' ','',symbol)
+    return(symbol[1])
+}
+
+#' tackling with exon array gene annotation
+#'
+#' this function extrac gene symbo from the affy st arrays
+#' @param assignVec the gene assignment vector
+#' @return NA or gene symbol
+#' @export
+gassigSearch <- function(assignVec) {
+        return(unlist(lapply(assignVec,function(x) {gassigSearch0(x)})))
+}
