@@ -735,9 +735,6 @@ genepix.prep <- function(array.fname) {
 
 ##list2table
 up.or.down <- function(deg, gene) {
-    if(length(intersect(deg$up,deg$dn)) != 0)
-        stop("up.or.down error: ",gene," presented in both up and
-down regulated gene list\n")
     if(gene %in% deg$up)
         return(1)
     if(gene %in% deg$dn)
@@ -750,7 +747,11 @@ down regulated gene list\n")
 #' @export
 list2table <- function(degs.list) {
     ##assume that degs.list is a list of degs
-    ##each element is a list of length 2:up regulated genes&down regulated genes
+    ##each element is a list of length 2,up&down regulated genes, element name should be 'up','dn'
+    checkoverlap <- function(deg) { ifelse(length(intersect(deg$up,deg$dn))!=0,T,F) }
+    overlp <- unlist(lapply(degs.list, checkoverlap))
+    if(any(overlp))
+        stop('overlap found between up and down regulated genes in ',which(paste(overlap,',')),'th element of the deg list')
     DEGs <- unique(unlist( ## code below for combine up and down genes
         lapply(degs.list, function(x) unique(unlist(x)))) )
     res <- matrix(0, ncol=length(degs.list), nrow = length(DEGs) )
