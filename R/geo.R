@@ -395,9 +395,9 @@ grepGPLtable <- function(query,gpl) {
 geo.agilent44k.prep <- function(geo.flist) {
     cat("array data files we will process are shown bellow\n")
     print(geo.flist)
-    answer <- dual.choice("sure we go ahead?",value1 = "y",value2="n")
-    if(answer == "n")
-        return(NULL)
+#    answer <- dual.choice("sure we go ahead?",value1 = "y",value2="n")
+#    if(answer == "n")
+#        return(NULL)
     prep.obj <- agilent44k.prep(array.fnames = geo.flist)
     prep.obj
 }
