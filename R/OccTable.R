@@ -2,7 +2,7 @@
 #'
 #' this function convert a names list  with length n to a matrix with dim x*n
 #' x is the total number of unique elements stored in the list
-#' @param lst
+#' @param lst a deg list
 #' @return a matrix with 0s and 1s
 #' @export
 list2OccTable <- function(lst) {
