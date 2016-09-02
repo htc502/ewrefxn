@@ -8,8 +8,19 @@
 #' @export
 myVennDiagram <- function(...) {
 	Args <- list(...)
+	if('x' %in% names(Args)) {
+	inputList <- Args$x
+	} else {
+	inputList <- Args[[1]]
+	}
+	if(!is.list(inputList))
+		stop('input x not found')
+	nCat <- length(inputList)
+	if(!require(RColorBrewer))
+		stop('error loading RColorBrewer')
+	fill <- brewer.pal(nCat,'Set2')
 	myArgs <- list(	lwd=0,
-			fill=c('#1b9e77','#d95f02','#7570b3'),
+			fill=fill,
 			main.fontfamily='sans',
 			cat.fontfamily='sans',
 			fontfamily='sans',
