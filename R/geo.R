@@ -35,6 +35,8 @@ getMtr <- function(gse.obj, col=2) {
     ##this function extract a specified column from a GSMList and combine these columns to form a data matrix
     if(!require(GEOquery))
         stop("error loading GEOquery package\n")
+    if(length(GPLList(gse.obj)) != 1)
+        stop('multiple platforms found in this dataset')
     probesets <- Table(GPLList(gse.obj)[[1]])$ID
     res <- do.call('cbind', lapply(GSMList(gse.obj), function(x) {
         tab <- Table(x)
