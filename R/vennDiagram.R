@@ -8,18 +8,20 @@
 #' @export
 myVennDiagram <- function(...) {
 	Args <- list(...)
-		myArgs <- list(	lwd=0,
-				fill=c('#1b9e77','#d95f02','#7570b3'),
-				main.fontfamily='sans',
-				cat.fontfamily='sans',
-				fontfamily='sans',
-				alpha=rep(.6,3))
+	myArgs <- list(	lwd=0,
+			fill=c('#1b9e77','#d95f02','#7570b3'),
+			main.fontfamily='sans',
+			cat.fontfamily='sans',
+			fontfamily='sans',
+			alpha=rep(.6,3))
 ##remove those args respecified in myargs
-		dupArgs <- intersect(names(Args),names(myArgs))
-		if(length(dupArgs) != 0) {
-			pos <- match(dupArgs, names(myArgs))
-				myArgs <- myArgs[-pos]
-		}
+	dupArgs <- intersect(names(Args),names(myArgs))
+	if(length(dupArgs) != 0) {
+		pos <- match(dupArgs, names(myArgs))
+			myArgs <- myArgs[-pos]
+	}
 	newArgs <- c(myArgs, Args)
-		do.call(venn.diagram,newArgs)
+	if(!require(VennDiagram))
+		stop('error loading VennDiagram')
+	do.call(venn.diagram,newArgs)
 }
