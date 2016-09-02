@@ -31,7 +31,7 @@ myVennDiagram <- function(...) {
 		pos <- match(dupArgs, names(myArgs))
 			myArgs <- myArgs[-pos]
 	}
-	newArgs <- c(myArgs, Args)
+	newArgs <- c(Args, myArgs)
 	if(!require(VennDiagram))
 		stop('error loading VennDiagram')
 	do.call(venn.diagram,newArgs)
