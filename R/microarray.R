@@ -318,13 +318,21 @@ annot.affyProbeID <- function(affy.annot.file, probeIDs, target.col=15) {
 #' @param Preprocessing prep method to use, possible values: mas5, dchip, rma, gcrma
 #' @param PMA_cutoff percentage threshold of samples which failed the PMA calling test
 #' @param auto.annot set to TURE for automatically annotation of the probes
+#' @param symbol  set to TURE to get gene symbol annotation instead of entrezID
 #' @param ann.file if auto.annot = F, this file will be used to annote the probes
 #' @param ann.col if auto.annot = F, this column of the ann.file will be used to annote the probes
 #' @param multiple2one method for merge the probes corresponding to the same gene
 #' @return an expressionSet object
 #' @author dapeng, liang and guangchun, han
 #' @export
-affy.Microarray.preprocessing = function(phenoData, Preprocessing = "mas5", PMA_cutoff = 0.1, auto.annot=T,ann.file=NULL, ann.col=13, multiple2one = "Variance") {
+affy.Microarray.preprocessing = function(phenoData, 
+			Preprocessing = "mas5",
+			 PMA_cutoff = 0.1,
+			 auto.annot=T,
+			symbol=F,
+			ann.file=NULL, 
+			ann.col=13, 
+			multiple2one = "Variance") {
                                         #Check the parameters
     if(!any(Preprocessing == c("mas5","rma","gcrma","dchip")))
         stop('Preprocessing method should be one of "mas5", "rma", "gcrma", "dchip"')
@@ -382,10 +390,13 @@ affy.Microarray.preprocessing = function(phenoData, Preprocessing = "mas5", PMA_
 
         ##removing unannoted probes corresponding to unidentified EST
         annoted_probes = getText(aafLocusLink(rownames(expr_rm_ctrl), db.package));
+	if(symbol) {
+        annoted_probes = getText(aafSymbol(rownames(expr_rm_ctrl), db.package));
+	}
         expr_rm_unannoted = expr_rm_ctrl[annoted_probes != "", ]
 
         ##probe ids  map to gene identifier
-        geneid = getText(aafLocusLink(rownames(expr_rm_unannoted), db.package ));
+        geneid = annoted_probes[annoted_probes != ""]
     } else {
         if(is.null(ann.file) | is.null(ann.col))
             stop("annotation file and target column number is required for mannally annotation mode\n")
