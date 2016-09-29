@@ -5,8 +5,8 @@
 \title{internal fxn for affymatrix IVT microarray preprocessing}
 \usage{
 affy.Microarray.preprocessing(phenoData, Preprocessing = "mas5",
-  PMA_cutoff = 0.1, auto.annot = T, ann.file = NULL, ann.col = 13,
-  multiple2one = "Variance")
+  PMA_cutoff = 0.1, auto.annot = T, symbol = F, ann.file = NULL,
+  ann.col = 13, multiple2one = "Variance")
 }
 \arguments{
 \item{phenoData}{a table derived from sdrf file which must have two columns called ArrayDataFile and State}
@@ -16,6 +16,8 @@ affy.Microarray.preprocessing(phenoData, Preprocessing = "mas5",
 \item{PMA_cutoff}{percentage threshold of samples which failed the PMA calling test}
 
 \item{auto.annot}{set to TURE for automatically annotation of the probes}
+
+\item{symbol}{set to TURE to get gene symbol annotation instead of entrezID}
 
 \item{ann.file}{if auto.annot = F, this file will be used to annote the probes}
 

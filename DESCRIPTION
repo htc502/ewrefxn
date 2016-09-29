@@ -4,8 +4,8 @@ Version: 0.1
 Authors: Guangchun Han <hanguangchun@gmail.com>
 Maintainer: Guangchun Han <hanguangchun@gmail.com>
 Description: useful little auxillary fxns
-Depends: 
+Depends:
     R (>= 3.1.0)
 License: GPL(>=2)
 LazyData: true
-RoxygenNote: 5.0.1.9000
+RoxygenNote: 5.0.1
