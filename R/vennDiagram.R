@@ -24,7 +24,7 @@ myVennDiagram <- function(...) {
 			main.fontfamily='sans',
 			cat.fontfamily='sans',
 			fontfamily='sans',
-			alpha=rep(.6,3))
+			alpha=rep(.6,length(inputList)))
 ##remove those args respecified in myargs
 	dupArgs <- intersect(names(Args),names(myArgs))
 	if(length(dupArgs) != 0) {
