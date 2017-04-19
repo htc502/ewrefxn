@@ -16,6 +16,7 @@ myVennDiagram <- function(...) {
 	if(!is.list(inputList))
 		stop('input x not found')
 	nCat <- length(inputList)
+	if(nCat < 3 | nCat > 8) stop('error: # categories should be >= 3 and <= 8')
 	if(!require(RColorBrewer))
 		stop('error loading RColorBrewer')
 	fill <- brewer.pal(nCat,'Set2')
