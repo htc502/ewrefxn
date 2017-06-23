@@ -1,5 +1,5 @@
 
-enrich.test = (PathGenes, interestGenes, totalGenes) {
+enrich.test = function(PathGenes, interestGenes, totalGenes) {
 ################################################
 ###           | inPath | not inPath |
 ###-------------------------------------------
