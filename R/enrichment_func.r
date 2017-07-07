@@ -8,6 +8,10 @@ enrich.test = function(PathGenes, interestGenes, totalGenes) {
 ###-------------------------------------------
 ###           |  nPath |            | nAll
 ################################################
+  ##remove genes not included in reference gene set
+  PathGenes = intersect(PathGenes,totalGenes)
+  interestGenes = intersect(interestGenes, totalGenes)
+  
   nPath <- length(PathGenes)
   nPredict <- length(interestGenes)
   a <- length(intersect(PathGenes,interestGenes))
@@ -25,7 +29,8 @@ enrich.test = function(PathGenes, interestGenes, totalGenes) {
   tmp <- c(a,b,c,d,p,p1,p2)
   res = list(mat=m,p=list('fisher.exact'=p,
                           'phyper1'=p1,
-                          'phyper2'=p2))
+                          'phyper2'=p2),
+            overlapped=intersect(PathGenes, interestGenes))
   res
 }
 
