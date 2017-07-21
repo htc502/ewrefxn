@@ -48,7 +48,7 @@ findExtreme <- function(parseDuRes) {
         return
     }
     print('total disk usage')
-    print(paste0(parseDuRes$total$dir,' : ',parseDuRes$total$nBlk))
+    print(paste0(parseDuRes$total$dir,' : ',parseDuRes$total$nBlk,'MB'))
     print('--------------------')
     print('extremely large subdirs&files')
     print(paste(parseDuRes$contents$dir[outliers],' : ',parseDuRes$contents$nBlk[outliers],'MB'))
