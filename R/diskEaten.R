@@ -1,6 +1,6 @@
 ##Du for diskusage status
 getDu <- function(dir) {
-    cmdGetDiskUsage <- paste0('du -d1 -m',dir)
+    cmdGetDiskUsage <- paste0('du -d1 -m ',dir)
     system(cmdGetDiskUsage,intern=T) -> cmdOutput
     list(cmdOutput = cmdOutput, dir=dir)
 }
