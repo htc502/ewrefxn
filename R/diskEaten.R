@@ -1,6 +1,6 @@
 ##Du for diskusage status
 getDu <- function(dir) {
-    cmdGetDiskUsage <- paste0('du -d1 ',dir)
+    cmdGetDiskUsage <- paste0('du -d1 -m',dir)
     system(cmdGetDiskUsage,intern=T) -> cmdOutput
     list(cmdOutput = cmdOutput, dir=dir)
 }
@@ -51,7 +51,7 @@ findExtreme <- function(parseDuRes) {
     print(paste0(parseDuRes$total$dir,' : ',parseDuRes$total$nBlk))
     print('--------------------')
     print('extremely large subdirs&files')
-    print(paste(parseDuRes$contents$dir[outliers],' : ',parseDuRes$contents$nBlk[outliers]))
+    print(paste(parseDuRes$contents$dir[outliers],' : ',parseDuRes$contents$nBlk[outliers],'MB'))
     print('--------------------')
 }
 
