@@ -1,3 +1,19 @@
+#' fisher's exact test and hypergeometric test for gene set
+#'
+#' This fxn calculates statistics using fisher's exact test and hypergeometric test given a set of genes and gene set
+#' 
+#' @param PathGenes a vector of genes belonging to a pathway
+#' @param interestGenes a vector of genes of interest
+#' @param totalGenes a vector of background genes
+#'
+#' @return a list
+#' @author guangchun
+#' @keywords enrich.test
+#' @examples
+#' 
+#' @rdname enrich.test
+#' @export
+
 
 enrich.test = function(PathGenes, interestGenes, totalGenes) {
 ################################################
