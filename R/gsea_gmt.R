@@ -34,7 +34,9 @@ gsea.gmt.getName = function(plist) {
  unlist(lapply(plist,function(e) e$Name)) 
 }
 gsea.gmt.getGenes = function(plist) {
-lapply(plist,function(e) e$Genes) 
+lapply(plist,function(e) e$Genes) -> tmp
+names(tmp) = gsea.gmt.getName(plist)
+tmp
 }
 gsea.gmt.getnGene = function(plist) {
   unlist(lapply(plist,function(e) e$nGene)) -> tmp
