@@ -34,4 +34,3 @@ internal fxn for affymatrix IVT microarray preprocessing
 \author{
 dapeng, liang and guangchun, han
 }
-

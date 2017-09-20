@@ -15,4 +15,3 @@ list with up&down regulated genes expression tables
 \description{
 fc.calc for small sample DEG identification based on FC
 }
-

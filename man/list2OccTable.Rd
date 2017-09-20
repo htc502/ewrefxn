@@ -16,4 +16,3 @@ a matrix with 0s and 1s
 this function convert a names list  with length n to a matrix with dim x*n
 x is the total number of unique elements stored in the list
 }
-

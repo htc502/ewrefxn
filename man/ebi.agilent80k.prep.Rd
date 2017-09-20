@@ -14,4 +14,3 @@ ebi.agilent80k.prep(ae.flist)
 function to process agilent80k chip data
 this function actually calls ebi.agilent44k
 }
-

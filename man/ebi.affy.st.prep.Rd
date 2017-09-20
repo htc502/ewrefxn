@@ -12,4 +12,3 @@ ebi.affy.st.prep(ae.flist)
 \description{
 preprocessing affymetrix chip data
 }
-

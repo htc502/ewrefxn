@@ -18,4 +18,3 @@ affymatrix ivt microarray preprocessing 'lite' version
 \author{
 guangchun han
 }
-

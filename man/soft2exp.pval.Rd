@@ -32,4 +32,3 @@ a list with expmatrix probeID symbols and entrezID
 \description{
 given an accession number(gseXXXX), this fxn download and extract the expression matrix
 }
-

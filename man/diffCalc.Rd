@@ -19,4 +19,3 @@ a list with 2 tables: up&down regulated genes expression fold change table
 \description{
 internal fxn for array data DEG calc
 }
-

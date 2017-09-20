@@ -9,4 +9,3 @@ list2table(degs.list)
 \description{
 assume that degs.list is a list of degs. each element is a list of length 2:up regulated genes&down regulated genes
 }
-

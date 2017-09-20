@@ -9,4 +9,3 @@ is.installed(pkg.name)
 \description{
 check if a package has been installed or not
 }
-

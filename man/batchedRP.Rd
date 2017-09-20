@@ -26,4 +26,3 @@ a list with class labels(useful for identify up and down regulated genes based o
 ... for additional factors that is used to group samples into more precisable sub-groups
 DEG will be calculated in each subgroups
 }
-

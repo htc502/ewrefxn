@@ -33,4 +33,3 @@ samOrder(x,y)
 guangchun hanguangchunATgmail.com
 }
 \keyword{samOrder}
-

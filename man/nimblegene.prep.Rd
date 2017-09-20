@@ -18,4 +18,3 @@ nimblegene array preprocessing(experimentail)
 \author{
 guangchun han
 }
-

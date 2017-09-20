@@ -12,4 +12,3 @@ ebi.affy.ivt.prep(ae.flist)
 \description{
 function to processing affymetrix ivt chip data(exon chip)
 }
-

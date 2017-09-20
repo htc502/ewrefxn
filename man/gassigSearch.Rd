@@ -15,4 +15,3 @@ NA or gene symbol
 \description{
 this function extrac gene symbo from the affy st arrays
 }
-

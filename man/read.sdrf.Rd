@@ -9,4 +9,3 @@ read.sdrf(fname)
 \description{
 readin arrayexpress sdrf file
 }
-

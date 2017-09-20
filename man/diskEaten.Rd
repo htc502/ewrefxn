@@ -18,4 +18,3 @@ https://technet.microsoft.com/en-us/sysinternals/du.aspx and  put it into PATH.
 As this function use different underlying system API on win and linux,
 the disk usage amount reported may not be the same.
 }
-

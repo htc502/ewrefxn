@@ -18,4 +18,3 @@ affymatrix tilling microarray preprocessing
 \author{
 guangchun han
 }
-

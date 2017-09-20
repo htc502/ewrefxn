@@ -26,4 +26,3 @@ list2matrix(tmp)
 guangchun
 }
 \keyword{list2matrix}
-

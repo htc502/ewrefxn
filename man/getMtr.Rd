@@ -17,4 +17,3 @@ expression matrix with each column correponding to a sample, each row to a gene/
 \description{
 this fxn extract the expression matrix from an object returned by GEOquery
 }
-

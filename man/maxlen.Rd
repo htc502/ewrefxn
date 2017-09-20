@@ -13,4 +13,3 @@ maxlen(x)
 return the length of the vector element with max length
 }
 \keyword{length}
-

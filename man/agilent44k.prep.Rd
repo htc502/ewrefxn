@@ -20,4 +20,3 @@ agilent 4*44k microarray raw data preprocessing
 \author{
 guangchun han
 }
-

@@ -14,4 +14,3 @@ return the index of the element with max vector length in a list of vectors.
 if there are many longest vectors,return a vector of their indice
 }
 \keyword{index}
-

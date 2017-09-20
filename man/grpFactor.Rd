@@ -18,4 +18,3 @@ a new factor with levels combined from each individual factor
 this function will group factors of the same length into a 'combined' one
 levels of inidividual factors will be combined together
 }
-

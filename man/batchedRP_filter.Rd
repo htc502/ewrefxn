@@ -15,4 +15,3 @@ a list with filtered DEGs and class label for each DEG calculation
 \description{
 this function is intended to be used accompany with batchedRP
 }
-

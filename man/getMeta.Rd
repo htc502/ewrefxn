@@ -17,4 +17,3 @@ phenotype information list with each element correponding to a sample
 \description{
 this fxn extract information from an object returned by GEOquery
 }
-

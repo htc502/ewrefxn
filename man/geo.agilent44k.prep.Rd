@@ -12,4 +12,3 @@ geo.agilent44k.prep(geo.flist)
 \description{
 agilent 4*44k microchip preprocessing method
 }
-

@@ -24,4 +24,3 @@ a list with 3 elements: dat for expression data matrix, cls for the coresspondin
 this function is used to extract and prepare the data matrix which will be used to do differential expression calculation.
 if class1 is set to NULL, the returned value will be used for one class DEG analysis.
 }
-

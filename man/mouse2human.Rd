@@ -24,4 +24,3 @@ mouse2human(m1)
 guangchun
 }
 \keyword{mouse2human}
-

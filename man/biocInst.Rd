@@ -9,4 +9,3 @@ biocInst(pkg.name)
 \description{
 install a package using bioconductor
 }
-

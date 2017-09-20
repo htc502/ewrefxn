@@ -12,4 +12,3 @@ Color scheme was chosen from color brewer.
 It takes the same parameter as venn.diagram
 You can override the paramters by specifiying them again
 }
-

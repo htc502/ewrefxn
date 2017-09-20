@@ -19,4 +19,3 @@ a vector of symbols with missing value as NA
 \description{
 get symbol from ncbi geo GPL table
 }
-

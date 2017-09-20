@@ -9,4 +9,3 @@ require0(pkg.name)
 \description{
 if hasn't been installed, install and load
 }
-

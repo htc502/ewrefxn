@@ -14,4 +14,3 @@ ebi.agilent44k.prep(ae.flist)
 function to process agilent44k chip data
 this function is part of the pipeline, the input is the value returned by ebi.fetch
 }
-
