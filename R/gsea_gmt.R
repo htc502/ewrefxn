@@ -31,12 +31,12 @@ read.gsea.gmt = function(f) {
 }
 
 gsea.gmt.getName = function(plist) {
- unlist(lapply(plist,function(e) e$Name)) 
+  unlist(lapply(plist,function(e) e$Name)) 
 }
 gsea.gmt.getGenes = function(plist) {
-lapply(plist,function(e) e$Genes) -> tmp
-names(tmp) = gsea.gmt.getName(plist)
-tmp
+  lapply(plist,function(e) e$Genes) -> tmp
+  names(tmp) = gsea.gmt.getName(plist)
+  tmp
 }
 gsea.gmt.getnGene = function(plist) {
   unlist(lapply(plist,function(e) e$nGene)) -> tmp
@@ -44,7 +44,7 @@ gsea.gmt.getnGene = function(plist) {
   tmp
 }
 gsea.gmt.geturl = function(plist) {
- unlist(lapply(plist,function(e) e$url)) 
+  unlist(lapply(plist,function(e) e$url)) 
 }
 
 
@@ -66,4 +66,16 @@ gsea.gmt.reOrganize = function(plist) {
        Genes=gsea.gmt.getGenes(plist),
        nGene=gsea.gmt.getnGene(plist),
        urls=gsea.gmt.geturl(plist))
+}
+
+#' output with each pathway as a column
+#'
+#' @param x pathway list
+#' @return a matrix
+#' @author ghan
+#' @export
+gsea.gmt.outputMatrix = function(plist) {
+  tmplist = gsea.gmt.getGenes(plist)
+  names(tmplist) = paste0(gsea.gmt.getName(plist),'(',gsea.gmt.getnGene(plist),')')
+  ewrefxn::list2matrix(tmplist)
 }
