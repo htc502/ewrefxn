@@ -56,4 +56,3 @@ searchNCBI = function(keyword, db = 'pubmed',out = NULL) {
   write_tsv(outputTbl, out)
   outputTbl
 }
-
