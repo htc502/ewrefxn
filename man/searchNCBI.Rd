@@ -7,15 +7,15 @@
 searchNCBI(keyword, db = "pubmed", out = NULL)
 }
 \arguments{
-\item{keyword}{}
+\item{keyword}{the query statement used to search in ncbi pubmed website}
 }
 \value{
-a data frame
+a data frame with IF2017 included
 }
 \description{
 search NCBI pubmed for wanderful papers
 }
 \author{
-guangchun
+hanguangchun@gmail.com
 }
 \keyword{searchNCBI}

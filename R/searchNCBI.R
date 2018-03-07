@@ -1,9 +1,9 @@
 #' search NCBI pubmed for wanderful papers
 #'
-#' @param keyword 
+#' @param keyword the query statement used to search in ncbi pubmed website
 #'
-#' @return a data frame
-#' @author guangchun
+#' @return a data frame with IF2017 included
+#' @author hanguangchun@gmail.com
 #' @keywords searchNCBI
 #' @export
 
