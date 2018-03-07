@@ -4,7 +4,8 @@
 \alias{enrich.test}
 \title{fisher's exact test and hypergeometric test for gene set}
 \usage{
-enrich.test(PathGenes, interestGenes, totalGenes)
+enrich.test(PathGenes, interestGenes, totalGenes, comet_exact_test = F,
+  mutmatplot = T)
 }
 \arguments{
 \item{PathGenes}{a vector of genes belonging to a pathway}
@@ -12,6 +13,10 @@ enrich.test(PathGenes, interestGenes, totalGenes)
 \item{interestGenes}{a vector of genes of interest}
 
 \item{totalGenes}{a vector of background genes}
+
+\item{comet_exact_test}{logical for comet exact test of mutual exclusive(requires package cometExactTest)}
+
+\item{mutmatplot}{plot mutation mat for cometExactTest result}
 }
 \value{
 a list
