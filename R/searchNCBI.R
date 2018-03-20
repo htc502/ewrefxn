@@ -42,11 +42,11 @@ searchNCBI = function(keyword, db = 'pubmed',out = NULL) {
     title = titles1,
     abstr = abstr1,
     year = year1,
+    ImpactFactor2017 = if_score,
     keywords = keywords1,
     journal = journal1,
     authors = authors1,
     pmid = pmid1,
-    ImpactFactor2017 = if_score,
     stringsAsFactors = F
     )) 
   outputTbl = outputTbl %>% arrange(desc(ImpactFactor2017))
