@@ -12,3 +12,4 @@
      4. add fxns files to the R subdirectory of the project
      5. run `document` at the root of project dir
      6. cd to the f_wd and run `install` to test the package  
+* to install: `library(devtools); devtools::install_github('htc502/ewrefxn')`
