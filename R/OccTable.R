@@ -24,7 +24,7 @@ list2OccTable <- function(lst) {
     res
 }
 
-#' convert a named list to an Ocurrence table(emerged 1, absent 0), this one is speedy, need test...
+#' convert a named list to an Ocurrence table(emerged 1, absent 0), this one is speedy
 #'
 #' this function convert a names list  with length n to a matrix with dim x*n
 #' x is the total number of unique elements stored in the list
