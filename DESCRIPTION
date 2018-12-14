@@ -4,8 +4,11 @@ Version: 0.1
 Authors: Guangchun Han <hanguangchun@gmail.com>
 Maintainer: Guangchun Han <hanguangchun@gmail.com>
 Description: useful little auxillary fxns
+biocView: 
 Depends:
-    R (>= 3.1.0)
+    R (>= 3.1.0),  usethis, DESeq2
 License: GPL(>=2)
 LazyData: true
 RoxygenNote: 6.0.1.9000
+Imports: usethis,
+    DESeq2

@@ -2,7 +2,7 @@
 % Please edit documentation in R/OccTable.R
 \name{list2OccTable1}
 \alias{list2OccTable1}
-\title{convert a named list to an Ocurrence table(emerged 1, absent 0), this one is speedy, need test...}
+\title{convert a named list to an Ocurrence table(emerged 1, absent 0), this one is speedy}
 \usage{
 list2OccTable1(lst)
 }
