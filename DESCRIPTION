@@ -5,9 +5,9 @@ Authors: Guangchun Han <hanguangchun@gmail.com>
 Maintainer: Guangchun Han <hanguangchun@gmail.com>
 Description: useful little auxillary fxns
 Depends:
-    R (>= 3.1.0)  
+    R (>= 3.1.0)
 License: GPL(>=2)
 biocViews: Sequencing, RNASeq, GeneExpression, DifferentialExpression
 LazyData: true
-RoxygenNote: 6.0.1.9000
+RoxygenNote: 6.1.1
 Imports: DESeq2
