@@ -12,10 +12,16 @@
 #' mouse2human(m1)
 #' @rdname mouse2human
 #' @export
-
 mouse2human <- function(msymb) {
+    f = system.file("extdata", "HMD_HumanPhenotype.dat", package = "ewrefxn",
+                    mustWork = T)
+    humanMouseMap = read.delim(f,row.names = NULL,
+                               comment.char = '#')
+    if(any(duplicated(msymb))) stop('duplicated values found in input vector')
+    df = humanMouseMap
+    humanMouseMap1 = aggregate(df$human, list(mouse = df$mouse), paste, collapse = '|')
     pos <- match(msymb, humanMouseMap$mouse)
-    humanMouseMap[ pos, ]$human
+    humanMouseMap1[ pos, ]$x
 }
 
 
@@ -34,7 +40,15 @@ mouse2human <- function(msymb) {
 #' @rdname human2mouse
 #' @export
 
-human2mouse <- function(hsymb) {
-    pos <- match(hsymb, humanMouseMap$human)
-    humanMouseMap[ pos, ]$mouse
+human2mouse <- function(msymb) {
+    f = system.file("extdata", "HMD_HumanPhenotype.dat", package = "ewrefxn",
+                    mustWork = T)
+    humanMouseMap = read.delim(f,row.names = NULL,
+                               comment.char = '#')
+    if(any(duplicated(msymb))) stop('duplicated values found in input vector')
+    df = humanMouseMap
+    humanMouseMap1 = aggregate(df$mouse, list(human = df$human), paste, collapse = '|')
+    pos <- match(msymb, humanMouseMap$human)
+    humanMouseMap1[ pos, ]$x
 }
+

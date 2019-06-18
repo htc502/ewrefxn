@@ -5,7 +5,8 @@
 \title{expression matrix generator (with detection pvalue)}
 \usage{
 soft2exp.pval(AccNum, detectp.col = 3, exp.col = 2, symbol.col,
-  entrezID.col, phe.col, detectp = 0.05, detectionRate = 0.5, log2 = F)
+  entrezID.col, phe.col, detectp = 0.05, detectionRate = 0.5,
+  log2 = F)
 }
 \arguments{
 \item{AccNum}{accession number}

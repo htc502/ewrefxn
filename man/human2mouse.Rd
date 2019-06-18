@@ -4,7 +4,7 @@
 \alias{human2mouse}
 \title{map gene symbols between mouse and human}
 \usage{
-human2mouse(hsymb)
+human2mouse(msymb)
 }
 \arguments{
 \item{humansymbols}{}

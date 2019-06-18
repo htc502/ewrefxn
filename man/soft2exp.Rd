@@ -4,8 +4,8 @@
 \alias{soft2exp}
 \title{expression matrix generator}
 \usage{
-soft2exp(AccNum, filename = NULL, exp.col = 2, symbol.col, entrezID.col,
-  phe.col, log2 = F)
+soft2exp(AccNum, filename = NULL, exp.col = 2, symbol.col,
+  entrezID.col, phe.col, log2 = F)
 }
 \arguments{
 \item{AccNum}{accession number}
