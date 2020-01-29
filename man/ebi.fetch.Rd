@@ -4,8 +4,15 @@
 \alias{ebi.fetch}
 \title{fetch gene expression data from EBI arrayexpress}
 \usage{
-ebi.fetch(accession, path = getwd(), type = "full", extract = T,
-  local = F, sourcedir = path, ...)
+ebi.fetch(
+  accession,
+  path = getwd(),
+  type = "full",
+  extract = T,
+  local = F,
+  sourcedir = path,
+  ...
+)
 }
 \arguments{
 \item{accession}{Accession number of the data, like 'E-GEOD-6039' etc}

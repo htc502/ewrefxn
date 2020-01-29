@@ -4,8 +4,13 @@
 \alias{rm.absent}
 \title{function used to filter expression matrix based on detection pvalue/PMA matrix}
 \usage{
-rm.absent(expr, PA.mtr = NULL, detectRate = 0.2, DP.mtr = NULL,
-  dp.cutoff = 0.05)
+rm.absent(
+  expr,
+  PA.mtr = NULL,
+  detectRate = 0.2,
+  DP.mtr = NULL,
+  dp.cutoff = 0.05
+)
 }
 \value{
 a list with express matrix; detection pvalue and an index indicating which probes are filtered out

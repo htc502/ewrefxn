@@ -4,8 +4,14 @@
 \alias{tbl2hmap}
 \title{convert long tibble to pheatmap data input}
 \usage{
-tbl2hmap(tbl.long, rowVar, colVar, valueVar, colAnnVars = NULL,
-  rowAnnVars = NULL)
+tbl2hmap(
+  tbl.long,
+  rowVar,
+  colVar,
+  valueVar,
+  colAnnVars = NULL,
+  rowAnnVars = NULL
+)
 }
 \arguments{
 \item{tbl.long}{tibble in long format}

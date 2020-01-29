@@ -4,8 +4,13 @@
 \alias{enrich.test}
 \title{fisher's exact test and hypergeometric test for gene set}
 \usage{
-enrich.test(PathGenes, interestGenes, totalGenes, comet_exact_test = F,
-  mutmatplot = T)
+enrich.test(
+  PathGenes,
+  interestGenes,
+  totalGenes,
+  comet_exact_test = F,
+  mutmatplot = T
+)
 }
 \arguments{
 \item{PathGenes}{a vector of genes belonging to a pathway}

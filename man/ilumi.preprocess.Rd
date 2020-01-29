@@ -4,8 +4,14 @@
 \alias{ilumi.preprocess}
 \title{internal fxn for illumina microarray preprocessing}
 \usage{
-ilumi.preprocess(dataFile, controlFile = NULL, arrayDesignFile = NULL,
-  detection.p = 0.05, detectionRate = 0.5, norm.method = "ssn")
+ilumi.preprocess(
+  dataFile,
+  controlFile = NULL,
+  arrayDesignFile = NULL,
+  detection.p = 0.05,
+  detectionRate = 0.5,
+  norm.method = "ssn"
+)
 }
 \arguments{
 \item{dataFile}{this is the expression datafile exported from genomeStudio}

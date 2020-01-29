@@ -9,5 +9,5 @@ Depends:
 License: GPL(>=2)
 biocViews: Sequencing, RNASeq, GeneExpression, DifferentialExpression
 LazyData: true
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.2
 Imports: DESeq2

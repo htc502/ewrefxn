@@ -3,7 +3,6 @@
 \docType{package}
 \name{ewrefxn}
 \alias{ewrefxn}
-\alias{ewrefxn-package}
 \title{ewrefxn.}
 \description{
 ewrefxn.

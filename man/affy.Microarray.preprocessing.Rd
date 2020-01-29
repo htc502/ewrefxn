@@ -4,9 +4,16 @@
 \alias{affy.Microarray.preprocessing}
 \title{internal fxn for affymatrix IVT microarray preprocessing}
 \usage{
-affy.Microarray.preprocessing(phenoData, Preprocessing = "mas5",
-  PMA_cutoff = 0.1, auto.annot = T, symbol = F, ann.file = NULL,
-  ann.col = 13, multiple2one = "Variance")
+affy.Microarray.preprocessing(
+  phenoData,
+  Preprocessing = "mas5",
+  PMA_cutoff = 0.1,
+  auto.annot = T,
+  symbol = F,
+  ann.file = NULL,
+  ann.col = 13,
+  multiple2one = "Variance"
+)
 }
 \arguments{
 \item{phenoData}{a table derived from sdrf file which must have two columns called ArrayDataFile and State}

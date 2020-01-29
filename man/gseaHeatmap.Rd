@@ -4,8 +4,13 @@
 \alias{gseaHeatmap}
 \title{Make heatmap based on gsea enrichment results}
 \usage{
-gseaHeatmap(wd = wd, showPathway = NULL, myPalette = NULL,
-  colOrder = NULL, rowOrder = NULL)
+gseaHeatmap(
+  wd = wd,
+  showPathway = NULL,
+  myPalette = NULL,
+  colOrder = NULL,
+  rowOrder = NULL
+)
 }
 \arguments{
 \item{wd}{the directory which contains gsea result *-pos|neg.xls (actually txt) files.}
